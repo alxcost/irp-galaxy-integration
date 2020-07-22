@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+    If the value of 'URL_method' is 'get', the request will consist of the value of 'URL' coming back in
+    the initial response.  If value of 'URL_method' is 'post', any additional params coming back in the
+    initial response ( in addition to 'URL' ) will be encoded and appended to URL and a post will be performed.
+-->
+<tool name="iReceptor Plus Integration" id="irp-integration" tool_type="data_source" version="0.0.1">
+    <description>iReceptor Plus Integration Testing</description>
+    <command><![CDATA[
+        python '$__tool_directory__/../data_source.py' '$output' $__app__.config.output_size_limit
+    ]]></command>
+    <inputs action="https://trialreceptor.inesctec.pt/galaxy-wrappers/irp-integration" check_values="false" method="post">
+        <display>Redirected to $GALAXY_URL</display>
+        <param name="GALAXY_URL" type="baseurl" value="/tool_runner" />
+        <param name="tool_id" type="hidden" value="irp-integration" />
+        <param name="sendToGalaxy" type="hidden" value="1" />
+    </inputs>
+    <request_param_translation>
+        <request_param galaxy_name="URL_method" remote_name="URL_method" missing="post" />
+        <request_param galaxy_name="URL" remote_name="URL" missing="" />
+        <request_param galaxy_name="data_type" remote_name="outputType" missing="auto" >
+            <value_translation>
+                <value galaxy_value="tabular" remote_value="table" />
+            </value_translation>
+        </request_param>
+    </request_param_translation>
+    <outputs>
+        <data name="output" format="tabular" label="${tool.name}"/>
+    </outputs>
+    <options sanitize="False" refresh="True"/>
+</tool>
