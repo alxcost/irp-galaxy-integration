@@ -5,7 +5,7 @@ Galaxy datasource tool for connecting a Galaxy instance to the iReceptor Plus Ga
 ## Installation
 
 1. Copy `irp-gateway.xml` to `galaxy-central/tools/data_source`
-2. Configure `galaxy-central/config/tool_conf.xml` to include the new tool by adding the following entry under the `<section id="getext" name="Get Data">` tag.
+2. Configure `galaxy-central/config/tool_conf.xml` to include the new tool by adding `<tool file="data_source/irp-gateway.xml" />` under the `<section id="getext" name="Get Data">` tag.
 
    Example:
 ```xml
