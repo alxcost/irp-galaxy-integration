@@ -4,12 +4,12 @@
     the initial response.  If value of 'URL_method' is 'post', any additional params coming back in the
     initial response ( in addition to 'URL' ) will be encoded and appended to URL and a post will be performed.
 -->
-<tool name="iReceptor Plus Integration" id="irp-integration" tool_type="data_source" version="0.0.1">
-    <description>iReceptor Plus Integration Testing</description>
+<tool name="iReceptor Plus Gateway" id="irp-integration" tool_type="data_source" version="1.0.0">
+    <description>Access the iReceptor Plus Gateway to browse AIRR-seq data.</description>
     <command><![CDATA[
-        python '$__tool_directory__/../data_source.py' '$output' $__app__.config.output_size_limit
+        python '$__tool_directory__/data_source.py' '$output' $__app__.config.output_size_limit
     ]]></command>
-    <inputs action="https://trialreceptor.inesctec.pt/galaxy-wrappers/irp-integration" check_values="false" method="post">
+    <inputs action="https://gateway.ireceptor.org/downloads" check_values="false" method="post">
         <display>Redirected to $GALAXY_URL</display>
         <param name="GALAXY_URL" type="baseurl" value="/tool_runner" />
         <param name="tool_id" type="hidden" value="irp-integration" />
